@@ -61,7 +61,7 @@ module IpaReader
     end
 
     def icons
-      info = plist
+      info = CFPropertyList.native_types(plist.value)
       paths = info &&
       info['CFBundleIcons'] &&
       info['CFBundleIcons']['CFBundlePrimaryIcon'] &&
