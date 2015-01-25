@@ -50,8 +50,8 @@ module IpaReader
         data = read_file(Regexp.new("#{plist["CFBundleIconFiles"][0]}$"))
       elsif plist["CFBundleIconFile"]
         data = read_file(Regexp.new("#{plist["CFBundleIconFile"]}$"))
-      elsif plist["CFBundleIcons"]
-        data = read_file(Regexp.new("#{plist["CFBundleIcons"]["CFBundlePrimaryIcon"].value["CFBundleIconFiles"].value[0].value}$"))
+      elsif plist['CFBundleIcons'] && plist['CFBundleIcons']['CFBundlePrimaryIcon']
+        data = read_file(Regexp.new("#{CFPropertyList.native_types(plist["CFBundleIcons"]["CFBundlePrimaryIcon"])["CFBundleIconFiles"].last}$"))
       end
       if data
         IpaReader::PngFile.normalize_png(data)
