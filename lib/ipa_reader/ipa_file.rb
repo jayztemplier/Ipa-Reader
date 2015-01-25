@@ -61,6 +61,7 @@ module IpaReader
     end
 
     def icons
+      info = plist
       paths = info &&
       info['CFBundleIcons'] &&
       info['CFBundleIcons']['CFBundlePrimaryIcon'] &&
