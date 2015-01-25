@@ -53,11 +53,12 @@ module IpaReader
       elsif plist['CFBundleIcons'] && plist['CFBundleIcons']['CFBundlePrimaryIcon']
         data = read_file(Regexp.new("#{CFPropertyList.native_types(plist["CFBundleIcons"]["CFBundlePrimaryIcon"])["CFBundleIconFiles"].last}"))
       end
-      if data
-        IpaReader::PngFile.normalize_png(data)
-      else
-        nil
-      end
+      data
+      # if data
+      #   IpaReader::PngFile.normalize_png(data)
+      # else
+      #   nil
+      # end
     end
 
     def icons
